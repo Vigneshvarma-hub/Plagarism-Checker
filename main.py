@@ -1,7 +1,16 @@
 def check_plagiarism(text1, text2):
-    if text1 == text2:
-        return "100% Plagiarism"
-    else:
-        return "Not identical"
+    words1 = text1.split()
+    words2 = text2.split()
+    
+    common = set(words1) & set(words2)
+    
+    similarity = (len(common) / max(len(set(words1)), 1)) * 100
+    
+    return f"Similarity: {round(similarity, 2)}%"
 
-print(check_plagiarism("hello", "hello"))
+
+text1 = input("Enter first text: ")
+text2 = input("Enter second text: ")
+
+result = check_plagiarism(text1, text2)
+print(result)
